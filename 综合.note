@@ -1,0 +1,157 @@
+gvim相关
+  1.启动
+      gvim file |vim -g file
+  2.大小写设定
+    ~ 交换大小写
+    U 转大写
+    u 转小写
+  3.文件排版
+    gqap段落排版，空白行为一段
+    对齐文本
+      1.范围center居中的行宽度，可不填。1，5center 40
+      类比，rignt，left
+  4，排版整个文档
+    gggqG
+  5.viminfo,储存状态信息
+    命令行，模式，寄存器，标记，缓存，全局标量
+  6.0-9 ', '回退命令的历史保存，注意是推出保存，你永远可以'0回到关机前。
+  7.重返文件
+    ：oldfiles  ；返回一个历史列表
+    ：e #<2     ;返回第二个：
+    ：browse oldfiles :浏览，按e可选行号。
+  8.vim间信息移动
+    ：wviminfo ! ~/temp/viminfo
+    ：rviminfo ! ~/temp/viminfo
+  9.会话
+    工作结束，保存全部内容到会话。
+    ：mksession vimbook.vim
+    启用会话
+    :source vimbook.vim
+    另一种普通的方式启动会话
+    :vim -S vimbook
+      S,session,source.用来启动任何一个vim脚本。
+        session contend
+        blank           保留空窗口
+        buffers         所有缓冲区，而非仅仅一个窗口内的
+        curdir          当前目录
+        folds           折叠，包括人工创建的
+        help            帮助窗口
+        options         所有选项和映射
+        tabpages        所有标签页
+        winsize         窗口大小
+        terminal        包含终端窗口
+          以上包含窗口设置，而寄存器和命令行历史在viminfo。
+          挺好用的
+      mkview
+        视图，保存，同上。
+      :set modelines = 10
+        文件起手或者结尾的10行包含命令行则执行，特殊文件设置。
+      :set nomodeline  不信任命令。
+    10.文件寻找
+        目录查找
+          <F1> 键把你带到netrw目录浏览内容的帮助页面。这是一个常规的帮助页面，同样常规
+        的  CTRL-]  跳转到带标签的帮助项目，而  CTRL-O  则返回。
+
+        要选择显示和编辑的文件: (光标在某文件名上)
+        o                       横向分割窗口并显示文件                netrw-o 
+        v                       竖向分割窗口并显示文件                netrw-v 
+        p                       使用  preview-window                  netrw-p 
+        P                       在上次的窗口中编辑                    netrw-P 
+        t                       在新标签页中打开文件                  netrw-t 
+    11.加密打开
+        vim -x file
+        ctrl-x CTRL-F           文件名
+        ctrl-x CTRL-L           整行
+        CTRL-X CTRL-D           宏定义 (包括包含文件里的)
+        CTRL-X CTRL-I           当前文件以及所包含的文件
+        CTRL-X CTRL-K           字典文件内的单词
+        CTRL-X CTRL-T           同义词词典文件内的单词
+        CTRL-X CTRL-]           标签
+        CTRL-X CTRL-V           Vim 命令行
+        viv
+        1  2  4
+        需要研究下ctrl-d具体的内容，注意
+        reg,marks,tag
+        & 是对s 的重复
+        acd autochdir 根据窗口目录切换目录
+        ai autoindent 根据上一行缩进
+        ar autoread 有vim之外的改动自动重读文件
+        bg backgrand
+        bk backup 覆盖文件的时候保留备份文件
+        bri break indent 回绕行重复缩进+opt查找设置
+        bsdir browsedir 开始浏览文件目录
+    命令行字符
+        rang
+            . 当前行
+            't      标记位置
+            . $ % * 't / ? + -
+            可视区域
+            后一个匹配行
+            前一个匹配行
+            缺省数字num
+    启动
+        -g  +num    +cmd    
+        文件编辑
+        :e      不加文件名重新载入
+        :find   查找path
+        :pwd
+        :cd
+        :cd-    回到上一个文件
+        :file   显示文件名,ls
+        :file name      修改文件名name
+        :files      文件列表
+    参数列表
+        :args   显示参数列表
+        :all    参数列表所有文件打开窗口
+        :wn     写入并打开下一个
+        :wN     上一个
+        当前        新建
+        :argu[num        :sar[num     编辑第n个文件
+        :n               :sn
+        :n{argulist      :sn{argulist 定义新的argu列表并编辑第一个
+        :N               :sN          编辑前一个文件
+        :fir             :sfir        编辑首个文件
+        :la              :sla         编辑最后一个文件
+    写入
+        :w                           覆盖当前文件
+        :w >> filename               添加至文件
+        :cq                          推出不写入文件
+        :up                          如果有改动则写入
+    viminfo 寄存器、标记、历史记录信息储存
+        rv 【file】并覆盖已有的viminfo信息
+        wv 【file】向文件加入viminfo信息
+    buffer
+        badd fname  加入文件
+        当前窗口内         新窗口内     
+        :[N]buffer [N]     :[N]sbuffer [N]     至第 N 个参数/缓冲区
+        :[N]bnext [N]      :[N]sbnext [N]      往后第 N 个参数/缓冲区
+        :[N]bNext [N]      :[N]sbNext [N]      往前第 N 个参数/缓冲区
+        :[N]bprevious [N]  :[N]sbprevious [N]  往前第 N 个参数/缓冲区
+        :bfirst            :sbfirst            至首个参数/缓冲区
+        :blast             :sblast             至末个参数/缓冲区
+        :[N]bmod [N]       :[N]sbmod [N]       至第 N 个改动过的缓冲区
+     折叠
+        foldmethod   
+           set foldmethod=manual   手动折叠
+           set foldmethod=indent   按照缩进折叠
+           set foldmethod=expr     按照表达式
+           set foldmethod=syntax   按照语法区域折叠
+           set foldmethod=marker   按照标志
+        foldmarker 折叠
+           zf{motion} 操作符: 手动定义一个折叠
+           :{range}fold 将范围 {range} 包括的行定义为一个折叠
+           zd 删除光标下的一个折叠 (delete)
+           zD 删除光标下的所有折叠 (Delete)
+           zo 打开光标下的折叠 (open)
+           zO 打开光标下的所有折叠 (Open)
+           zc 关闭光标下的一个折叠 (close)
+           zC 关闭光标下的所有折叠 (Close)
+           zm 折起更多: 减少 'foldlevel' (more) 
+           zM 关闭所有折叠: 置 'foldlevel' 为 0 
+           zr 减少折叠: 增加 'foldlevel' (reduce)
+           zR 打开所有折叠: 置 'foldlevel' 为最大
+           zn 不折叠: 复位 'foldenable' (none)
+           zN 正常折叠: 置位 'foldenable' (Normal)
+           zi 反转 'foldenable'
+           zi g如ood ideal
+           good

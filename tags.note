@@ -1,0 +1,9 @@
+小技巧
+    1.替换
+        :%/\<four\>/4/gc
+        当前文件，空格，一行全局，c选择
+    2.多文件相同替换/注意在容
+        注意在args中，或打开多文件，q录制，替换，wn到下一个文件，q结束，20@a，报错结束。如下：good
+        good,zhege ozuoozuo   good,doyou kaila  
+dljo,goodilkj|,Lggjc ,
+goodgoodtadr.note
